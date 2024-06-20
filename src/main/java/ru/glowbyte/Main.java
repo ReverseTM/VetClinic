@@ -7,22 +7,19 @@ import ru.glowbyte.animal.wild.Wolf;
 import ru.glowbyte.interfaces.Animal;
 import ru.glowbyte.service.Veterinarian;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Veterinarian veterinarian = new Veterinarian();
 
-        Queue<Animal> queue = new ArrayDeque<>();
-        queue.add(new Cat("Барсик", "Петя"));
-        queue.add(new Fox("Алиса", "Лес"));
-        queue.add(new Dog("Шарик", "Иван"));
-        queue.add(new Wolf("Клык", "Лес"));
+        List<Animal> animals = List.of(
+                new Cat("Барсик", "Петя"),
+                new Fox("Алиса", "Лес"),
+                new Dog("Шарик", "Иван"),
+                new Wolf("Клык", "Лес")
+        );
 
-        Animal animal;
-        while ((animal = queue.poll()) != null) {
-            veterinarian.treat(animal);
-        }
+        animals.forEach(veterinarian::treat);
     }
 }
